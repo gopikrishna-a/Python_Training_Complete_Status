@@ -1,0 +1,68 @@
+
+#CREATING NEW TABLE
+import MySQLdb
+
+# Open database connection
+db = MySQLdb.connect("localhost","root","asm123","nri" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+
+# Create table as per requirement
+sql = """CREATE TABLE students (
+         FIRST_NAME  CHAR(20) NOT NULL,
+         LAST_NAME  CHAR(20),
+         AGE INT,  
+         SEX CHAR(1),
+         INCOME FLOAT )"""
+
+cursor.execute(sql)
+
+# disconnect from server
+db.close()
+
+
+#INSERTING DATA INTO TABLE
+
+import MySQLdb
+
+# Open database connection
+db = MySQLdb.connect("localhost","root","asm123","nri" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+# Prepare SQL query to INSERT a record into the database.
+sql = """INSERT INTO students(FIRST_NAME,LAST_NAME, AGE, SEX, BRANCH)
+         VALUES ('C', 'Chintu', 24, 'M', 'CSE')"""
+         
+cursor.execute(sql)
+   # Commit your changes in the database
+db.commit()
+
+# disconnect from server
+db.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
