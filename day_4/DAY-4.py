@@ -1,5 +1,6 @@
-#Created By A.Gopikrishna on 16/01/2017
-#Language : Python
+
+Created by A.Gopikrishna on 16/01/2017
+#Language ---> Python 2.7
 
 import sys
 
