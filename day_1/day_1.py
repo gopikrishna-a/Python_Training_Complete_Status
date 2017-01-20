@@ -1,5 +1,5 @@
 #Language---->Python 2.7
-#Written by A.Gopikrishna on 11/01/2017
+#Created by A.Gopikrishna on 11/01/2017
 
 #Task-1
 
