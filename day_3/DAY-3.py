@@ -1,5 +1,6 @@
-#Written by A.Gopikrishna on 13/01/2017
-#Language : Python 
+
+Created by A.Gopikrishna on 13/01/2017
+#Language ---> Python 2.7
 #Task-1(a)
 print "===Prime Numbers Without Definations==="
 count = 0
