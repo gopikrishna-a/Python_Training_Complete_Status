@@ -1,0 +1,189 @@
+
+<!--Creaed By A.gopikrishna on 16/01/2017 -->
+<!--Calendar using "HML","JAVASCRIPT" AND "CSS" Without using External Librarys-->
+<html>
+<head>
+<title>Calendar</title>
+
+<style type="text/css">
+
+h3 {
+    color: #ff9166;
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+     
+}
+
+
+td, th {text-align:center}
+</style>
+
+<style type="text/css">
+body {
+background: #b3ffff;
+}
+
+table {
+background: #99ccff;
+margin:50px auto;
+font: 15px/1.5 "Helvetica Neue", Helvetica, Arial, san-serif;
+}
+
+</style>
+<script language="JavaScript">
+
+// day of week of month's first day
+function getFirstDay(theYear, theMonth){
+    var firstDate = new Date(theYear,theMonth,1)
+    return firstDate.getDay()
+}
+// number of days in the month
+function getMonthLen(theYear, theMonth) {
+    var oneDay = 1000 * 60 * 60 * 24
+    var thisMonth = new Date(theYear, theMonth, 1)
+    var nextMonth = new Date(theYear, theMonth + 1, 1)
+    var len = Math.ceil((nextMonth.getTime() - 
+        thisMonth.getTime())/oneDay)
+    return len
+}
+// create array of English month names
+var theMonths = ["January","February","March","April","May","June","July","August",
+"September","October","November","December"]
+// return IE4+ or W3C DOM reference for an ID
+function getObject(obj) {
+    var theObj
+    if (document.all) {
+        if (typeof obj == "string") {
+            return document.all(obj)
+        } else {
+            return obj.style
+        }
+    }
+    if (document.getElementById) {
+        if (typeof obj == "string") {
+            return document.getElementById(obj)
+        } else {
+            return obj.style
+        }
+    }
+    return null
+}
+
+
+// clear and re-populate table based on form's selections
+function populateTable(form) {
+    var theMonth = form.chooseMonth.selectedIndex
+    var theYear = parseInt(form.chooseYear.options[form.chooseYear.selectedIndex].text)
+    // initialize date-dependent variables
+    var firstDay = getFirstDay(theYear, theMonth)
+    var howMany = getMonthLen(theYear, theMonth)
+    
+    // fill in month/year in table header
+    getObject("tableHeader").innerHTML = theMonths[theMonth] + " " + theYear
+    
+    
+    // initialize vars for table creation
+    var dayCounter = 1
+    var TBody = getObject("tableBody")
+    // clear any existing rows
+    while (TBody.rows.length > 0) {
+        TBody.deleteRow(0)
+    }
+    var newR, newC
+    var done=false
+    while (!done) {
+        // create new row at end
+        newR = TBody.insertRow(TBody.rows.length)
+        for (var i = 0; i < 7; i++) {
+            // create new cell at end of row
+            newC = newR.insertCell(newR.cells.length)
+            if (TBody.rows.length == 1 && i < firstDay) {
+                // no content for boxes before first day
+                newC.innerHTML = ""    
+                continue
+            }
+            if (dayCounter == howMany) {
+                // no more rows after this one
+                done = true
+            }
+            // plug in date
+            newC.innerHTML = (dayCounter <= howMany) ? 
+                dayCounter++ : ""
+        }
+        
+    }
+}
+
+
+//years
+function fillYears() {
+    var today = new Date()
+    var thisYear = today.getFullYear()
+    var yearChooser = document.dateChooser.chooseYear
+    for (i = thisYear; i < thisYear + 100; i++) {
+        yearChooser.options[yearChooser.options.length] = new Option(i, i)
+    }
+    setCurrMonth(today)
+}
+// set month choice to current month
+function setCurrMonth(today) {
+    document.dateChooser.chooseMonth.selectedIndex = today.getMonth()
+}
+</script>
+</head>
+
+
+
+<body onLoad="fillYears(); populateTable(document.dateChooser)">
+<h3 align="center">Calendar </h3>
+<div>
+
+<div id="cal">
+		
+
+<table ID="calendarTable" border=2 align="center">
+<tr>
+    <TH ID="tableHeader" colspan=7></TH>
+</tr>
+<tr><td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td>
+<td>Thu</td><td>Fri</td><td>Sat</td></tr>
+
+<TBODY id="tableBody"></TBODY>
+<tr>
+    <td colspan=7>
+    <p>
+    <form name="dateChooser">
+        <select name="chooseMonth" 
+        onChange="populateTable(this.form)">
+
+    
+            <option selected >January</option>
+            <option >February</option>
+            <option >March</option>
+            <option >April</option>
+            <option >May</option>
+            <option >June</option>
+            <option >July</option>
+            <option >August</option>
+            <option >September</option>
+            <option >October</option>
+            <option >November</option>
+            <option >December</option>
+
+    </select>
+
+    <select name="chooseYear" onChange="populateTable(this.form)"> </select><!--choosing Year List-->
+
+
+    </form>
+    </p></td>
+</tr>
+</table>
+</div>
+</body>
+<html>
