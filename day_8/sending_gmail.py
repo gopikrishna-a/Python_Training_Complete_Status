@@ -12,9 +12,9 @@ server.ehlo()
 server.starttls()
 server.ehlo()
 username = raw_input("Enter Ur Mail Id :")
-v1=sys.argv[1]
-v2=sys.argv[2]
-v3=sys.argv[3]
+v1=sys.argv[1]#Receiver Email Id
+v2=sys.argv[2]#Attachment File Name
+v3=sys.argv[3]#Subject
 password=getpass.getpass("Enter Ur Password :")
 server.login(username,password)
 to =v1
