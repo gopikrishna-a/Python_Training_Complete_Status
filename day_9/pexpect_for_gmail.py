@@ -1,4 +1,4 @@
-#Sending G-Mail 
+#Sending G-Mail Using Pexpect Code
 #Created By A.Gopikrishna On 23/01/2017
 import pexpect
 import sys
