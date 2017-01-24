@@ -1,12 +1,21 @@
+#Sending G-Mail 
+#Created By A.Gopikrishna On 23/01/2017
 import pexpect
-m_p=pexpect.spawn('python gmail.py')
-m_p.timeout=600
-m_p.expect('gamil')
-m_pexpect.sendline('a.gopikrishna01@gmal.com')
-m_p.expect('Password')
-m_p.sendline('AGK@ece001')
-m_p.expect('to')
-m_p.sendline('a.gopikrshna01@gmail.com')
-m_p.expect('subject')
-m_p.sendline('hello')
-m_p.close()
+import sys
+m = pexpect.spawn('python gmail_sample.py')
+m.logfile_read = sys.stdout
+m.expect("Username:")
+m.sendline('')#enter receiver mail id here
+m.expect("Password:")
+m.sendline('')#enter ur password here
+m.expect("To address :")
+m.sendline(" ")##enter receiver mail id here
+m.expect("Subject :")
+m.sendline("Test")#Enter subject here
+m.expect("Enter the content. Your last line should be as 'end'")
+m.sendline("hello")#Enater ur mail body content here
+m.sendline("end")
+m.expect("test has been send to a.gopikrishna@gmail.com")
+m.close()
+
+
