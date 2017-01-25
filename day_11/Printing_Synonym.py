@@ -6,8 +6,6 @@
 mydict = {'beautiful': 'attractive','funny': 'humorous','happy': 'joyfull'}#adding words into dictionary
 word = raw_input("Enter Ur Word for Synonym (Lower Case Only):")#taking user input word
 
-
-
 if word in mydict:
 	print "Synonyms for "+word+ " are",(mydict[word])#printing the Synonym if word exists
 else:
