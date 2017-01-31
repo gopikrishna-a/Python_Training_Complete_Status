@@ -1,4 +1,4 @@
-#Cnnecting to MySql database
+#Connecting to MySql database
 import MySQLdb
 
 db = MySQLdb.connect("localhost","root","asm123","TESTDB" )
