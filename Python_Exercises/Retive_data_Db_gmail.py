@@ -63,27 +63,12 @@ cursor.execute ("select ID,Name,Age from Students")
 
 # fetch all of the rows from the query
 mes = cursor.fetchall ()
-
-mes1 = []
-mes2 = []
-mes3 = []
-
-# print the rows
+string=''
 for row in mes:
-	a = row[0],row[1],row[2]
-	print a
-	mes1.append(row[0])
-	mes2.append(row[1])
-	mes3.append(row[2])
-print mes
-for i in mes:
-	print i	
-#print ', '.join(mes1)
-#print ', '.join(mes2)
-#print ', '.join(mes3)
-mess ='\t'.join(mes1) +"\n"+'\t'.join(mes2)+"\n"+'\t'.join(mes3)
+	line="%s\t %s\t %s"%(row[0],row[1],row[2])
+	string=string+line+'\n'
+print string
 
-print mess
 
 #Sending Mail
 
@@ -98,11 +83,14 @@ password=getpass.getpass()
 server.login(username,password)
 to = raw_input("Enter Receiver Email ID :")
 sub = raw_input("Enter Subject of mail :")
-message = "subject:  %s\n%s"%(sub,mess)
+message = "subject:  %s\n%s"%(sub,string)
 
 server.sendmail(username,to,message)
 cursor.close ()
 connection.close ()
+
+
+
 
 
 
